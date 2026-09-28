@@ -34,6 +34,15 @@ Local media files live in the git-ignored `media/` directory. Django serves
 them under `/media/` during development; production media should use a
 configured Django storage backend such as the planned Linode Object Storage.
 
+## Search visibility
+
+Local and demo environments stay out of search by default: `robots.txt`
+disallows crawling, the homepage is marked `noindex`, and the sitemap is
+disabled. For the public site, configure `DJANGO_DEBUG=0`,
+`DJANGO_SITE_INDEXABLE=1`, and `PUBLIC_SITE_URL=https://thefamilycenternc.org`
+in the server environment. Set the Wagtail Site hostname to
+`thefamilycenternc.org` as well so its sitemap uses the canonical domain.
+
 ## Run Django directly
 
 The local `.venv` is created with Python 3.14.7. Activate it and run Django

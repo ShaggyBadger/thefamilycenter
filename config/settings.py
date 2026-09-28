@@ -25,6 +25,13 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-only-insecure-key-change-me")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", "1").lower() in {"1", "true", "yes", "on"}
+PUBLIC_SITE_URL = os.getenv("PUBLIC_SITE_URL", "").strip().rstrip("/")
+DJANGO_SITE_INDEXABLE = os.getenv("DJANGO_SITE_INDEXABLE", "0").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
 
 ALLOWED_HOSTS = [
     host.strip()
@@ -63,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [

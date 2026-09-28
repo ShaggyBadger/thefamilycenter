@@ -9,7 +9,9 @@ services:
     environment:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-insecure-key-change-me}
       DJANGO_DEBUG: ${DJANGO_DEBUG:-1}
+      DJANGO_SITE_INDEXABLE: ${DJANGO_SITE_INDEXABLE:-0}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1}
+      PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-}
       DB_NAME: ${POSTGRES_DB:-familycenter}
       DB_USER: ${POSTGRES_USER:-familycenter}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-familycenter-dev-password}

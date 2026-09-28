@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if seo_title %}{{ seo_title }}{% elif page.seo_title %}{{ page.seo_title }}{% elif page.title %}{{ page.title }}{% else %}The Family Center{% endif %}</title>
     {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% elif page.search_description %}<meta name="description" content="{{ page.search_description }}">{% endif %}
-    {% if is_local_preview %}<meta name="robots" content="noindex,nofollow">{% endif %}
+    {% if not search_indexing_enabled %}<meta name="robots" content="noindex,nofollow">{% endif %}
+    {% if canonical_url %}
+      <link rel="canonical" href="{{ canonical_url }}">
+      <meta property="og:type" content="website">
+      <meta property="og:site_name" content="The Family Center">
+      <meta property="og:title" content="{{ seo_title|default:page.title }}">
+      <meta property="og:description" content="{{ meta_description|default:page.search_description }}">
+      <meta property="og:url" content="{{ canonical_url }}">
+      <meta name="twitter:card" content="summary">
+    {% endif %}
+    {% if organization_schema_json %}<script type="application/ld+json">{{ organization_schema_json|safe }}</script>{% endif %}
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
+    {% if is_local_preview %}
+      <p class="local-preview-banner">Local preview · Event details are for review until confirmed.</p>
+    {% endif %}
     <header class="site-header">
       <div class="site-header__inner">
         <a class="site-brand" href="/" aria-label="The Family Center home">

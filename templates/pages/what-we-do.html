@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-  <section class="about-band">
+  <section class="about-band about-band--photo-feature">
     <div class="about-band__inner">
       <div class="about-band__text">
         <p class="section-kicker">What We Do</p>
@@ -12,9 +12,10 @@
           long-term opportunities they need to thrive right here in North Carolina.
         </p>
       </div>
-      <div class="about-band__image">
-        <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Volunteers setting up for a community event in Winston-Salem, North Carolina." loading="lazy">
-      </div>
+      <figure class="about-band__image">
+        <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="An adult shares a smile with two children at an outdoor community gathering." loading="eager" fetchpriority="high" decoding="async">
+        <figcaption>A moment shared at an outdoor community gathering.</figcaption>
+      </figure>
     </div>
   </section>
 

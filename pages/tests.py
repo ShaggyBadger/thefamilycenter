@@ -1,8 +1,11 @@
+import json
+import re
 from datetime import timedelta
 from unittest.mock import patch
 
 from django.test import RequestFactory, TestCase, override_settings
 from django.utils import timezone
+from wagtail.models import Site
 
 from events.models import EventPage, EventsIndexPage
 from .models import HomePage
@@ -19,9 +22,72 @@ class WagtailPublicPageTests(TestCase):
         self.assertTemplateUsed(response, "pages/home_page.html")
         self.assertContains(response, "The Family Center")
         self.assertContains(response, "No upcoming events are listed right now.")
-        self.assertContains(response, "A community that shows up for its young people.")
-        self.assertContains(response, "Winston-Salem Community Events")
+        self.assertContains(response, "Helping students enter high school ready to thrive.")
+        self.assertContains(response, "Student Readiness in Winston-Salem")
+        self.assertContains(response, "The Family Center’s purpose is to prepare")
+        self.assertContains(response, "Local preview · Event details are for review")
         self.assertContains(response, 'name="robots" content="noindex,nofollow"')
+
+    def test_local_robots_disallow_crawling_and_hide_the_sitemap(self):
+        robots_response = self.client.get("/robots.txt")
+
+        self.assertEqual(robots_response.status_code, 200)
+        self.assertContains(robots_response, "User-agent: *")
+        self.assertContains(robots_response, "Disallow: /")
+        self.assertEqual(self.client.get("/sitemap.xml").status_code, 404)
+
+    @override_settings(
+        DEBUG=False,
+        DJANGO_SITE_INDEXABLE=True,
+        PUBLIC_SITE_URL="https://thefamilycenternc.org",
+    )
+    def test_indexable_homepage_has_local_seo_metadata_and_organization_schema(self):
+        response = self.client.get("/")
+        html = response.content.decode()
+        schema_match = re.search(
+            r'<script type="application/ld\+json">(.*?)</script>', html, re.DOTALL
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            '<link rel="canonical" href="https://thefamilycenternc.org/">',
+            html=False,
+        )
+        self.assertContains(response, 'property="og:type" content="website"')
+        self.assertNotContains(response, 'name="robots" content="noindex,nofollow"')
+        self.assertNotContains(response, "Local preview")
+        self.assertIsNotNone(schema_match)
+
+        schema = json.loads(schema_match.group(1))
+        self.assertEqual(schema["@type"], "NGO")
+        self.assertEqual(schema["name"], "The Family Center")
+        self.assertEqual(schema["areaServed"]["name"], "Winston-Salem")
+
+    @override_settings(
+        DEBUG=False,
+        DJANGO_SITE_INDEXABLE=True,
+        PUBLIC_SITE_URL="https://thefamilycenternc.org",
+        ALLOWED_HOSTS=["thefamilycenternc.org"],
+    )
+    def test_production_robots_and_sitemap_use_the_public_domain(self):
+        robots_response = self.client.get(
+            "/robots.txt", secure=True, HTTP_HOST="thefamilycenternc.org"
+        )
+        site = Site.objects.get(is_default_site=True)
+        site.hostname = "thefamilycenternc.org"
+        site.port = 443
+        site.save(update_fields=["hostname", "port"])
+
+        sitemap_response = self.client.get(
+            "/sitemap.xml", secure=True, HTTP_HOST="thefamilycenternc.org"
+        )
+
+        self.assertContains(
+            robots_response, "Sitemap: https://thefamilycenternc.org/sitemap.xml"
+        )
+        self.assertEqual(sitemap_response.status_code, 200)
+        self.assertContains(sitemap_response, "https://thefamilycenternc.org/")
 
     @override_settings(DEBUG=True)
     def test_homepage_features_the_next_live_wagtail_event(self):
@@ -45,6 +111,7 @@ class WagtailPublicPageTests(TestCase):
         self.assertContains(response, "Family Resource Day")
         self.assertContains(response, "Community Hall")
         self.assertContains(response, "View event details")
+        self.assertContains(response, "Local preview · details need confirmation")
 
     @override_settings(DEBUG=False)
     def test_homepage_only_shows_public_ready_events_outside_local_preview(self):

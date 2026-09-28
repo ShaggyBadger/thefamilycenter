@@ -1,10 +1,65 @@
-from django.conf import settings
-from django.shortcuts import render
-from django.utils import timezone
+import json
 from functools import partial
+
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
+from django.urls import reverse
+from django.utils import timezone
+from django.utils.safestring import mark_safe
+from wagtail.contrib.sitemaps.views import sitemap as wagtail_sitemap
 from wagtail.models import Site
 
+from config.context_processors import site_is_indexable
 from events.models import EventPage, EventsIndexPage
+
+
+def robots_txt(request):
+    if not site_is_indexable():
+        return HttpResponse(
+            "User-agent: *\nDisallow: /\n",
+            content_type="text/plain; charset=utf-8",
+        )
+
+    sitemap_url = f"{settings.PUBLIC_SITE_URL}{reverse('sitemap')}"
+    return HttpResponse(
+        f"User-agent: *\nAllow: /\n\nSitemap: {sitemap_url}\n",
+        content_type="text/plain; charset=utf-8",
+    )
+
+
+def sitemap_xml(request):
+    if not site_is_indexable():
+        return HttpResponseNotFound()
+    return wagtail_sitemap(request)
+
+
+def _organization_schema(public_site_url):
+    organization = {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "The Family Center",
+        "description": (
+            "A Winston-Salem nonprofit focused on preparing elementary- and "
+            "middle-school students to enter high school ready to thrive."
+        ),
+        "areaServed": {
+            "@type": "City",
+            "name": "Winston-Salem",
+            "containedInPlace": {
+                "@type": "State",
+                "name": "North Carolina",
+            },
+        },
+    }
+    if public_site_url:
+        organization["url"] = public_site_url
+        organization["@id"] = f"{public_site_url}/#organization"
+
+    # Escape HTML-significant characters before marking serialized JSON as safe.
+    schema_json = json.dumps(organization).replace("&", "\\u0026")
+    schema_json = schema_json.replace("<", "\\u003c").replace(">", "\\u003e")
+    return mark_safe(schema_json)
 
 
 def home(request):
@@ -36,9 +91,21 @@ def home(request):
             ).order_by("start_datetime")
             featured_event = upcoming_events.first()
             if featured_event:
-                upcoming_events = upcoming_events.exclude(pk=featured_event.pk)[:3]
+                if site_root.hero_image_id:
+                    upcoming_events = upcoming_events[:4]
+                else:
+                    upcoming_events = upcoming_events.exclude(
+                        pk=featured_event.pk
+                    )[:3]
             else:
                 upcoming_events = EventPage.objects.none()
+
+    search_indexing_enabled = site_is_indexable()
+    public_site_url = settings.PUBLIC_SITE_URL if search_indexing_enabled else ""
+    meta_description = (
+        "The Family Center is a Winston-Salem nonprofit focused on helping "
+        "elementary- and middle-school students enter high school ready to thrive."
+    )
 
     return render(
         request,
@@ -46,10 +113,15 @@ def home(request):
         {
             "page": site_root,
             "is_homepage": True,
-            "seo_title": "The Family Center | Winston-Salem Community Events",
-            "meta_description": (
-                "Find upcoming events from The Family Center in Winston-Salem, "
-                "North Carolina, and the details you need to plan your visit."
+            "seo_title": "The Family Center | Student Readiness in Winston-Salem",
+            "meta_description": meta_description,
+            "canonical_url": (
+                f"{public_site_url}{request.path}" if public_site_url else ""
+            ),
+            "organization_schema_json": (
+                _organization_schema(public_site_url)
+                if search_indexing_enabled
+                else ""
             ),
             "events_index_page": events_index_page,
             "featured_event": featured_event,
