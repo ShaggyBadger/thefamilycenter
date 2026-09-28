@@ -3,7 +3,7 @@ services:
     build: .
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     ports:
-      - "8000:8000"
+      - "127.0.0.1:${WEB_PORT:-8000}:8000"
     volumes:
       - .:/app
     environment:
@@ -26,7 +26,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-familycenter}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-familycenter-dev-password}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_wagtail:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-familycenter} -d ${POSTGRES_DB:-familycenter}"]
       interval: 5s
@@ -34,4 +34,4 @@ services:
       retries: 10
 
 volumes:
-  postgres_data:
+  postgres_data_wagtail:

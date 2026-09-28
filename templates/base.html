@@ -1,0 +1,70 @@
+{% load static wagtailcore_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if seo_title %}{{ seo_title }}{% elif page.seo_title %}{{ page.seo_title }}{% elif page.title %}{{ page.title }}{% else %}The Family Center{% endif %}</title>
+    {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% elif page.search_description %}<meta name="description" content="{{ page.search_description }}">{% endif %}
+    {% if is_local_preview %}<meta name="robots" content="noindex,nofollow">{% endif %}
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="/" aria-label="The Family Center home">
+          <span class="brand-mark" aria-hidden="true">FC</span>
+          <span class="brand-copy">
+            <span class="brand-name">The Family Center</span>
+            <span class="brand-location">Winston-Salem, North Carolina</span>
+          </span>
+        </a>
+        {% if site_root %}
+          <nav class="site-nav site-nav--desktop" aria-label="Primary navigation">
+            {% include "includes/primary_navigation.html" %}
+          </nav>
+          <details class="mobile-menu">
+            <summary aria-label="Menu">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </summary>
+            <nav class="mobile-menu__panel" aria-label="Mobile navigation">
+              {% include "includes/primary_navigation.html" %}
+            </nav>
+          </details>
+        {% endif %}
+    </div>
+  </header>
+    <main id="main-content" class="site-main{% if is_homepage %} site-main--home{% endif %}">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>The Family Center · Winston-Salem, North Carolina</p>
+        {% if site_footer_pages %}
+          <nav class="footer-nav" aria-label="Footer navigation">
+            {% for footer_page in site_footer_pages %}<a href="{{ footer_page.url }}">{{ footer_page.title }}</a>{% endfor %}
+          </nav>
+        {% endif %}
+      </div>
+    </footer>
+    <script>
+      var menu = document.querySelector('.mobile-menu');
+      if (menu) {
+        document.addEventListener('click', function(e) {
+          if (menu.open && !menu.contains(e.target)) {
+            menu.removeAttribute('open');
+          }
+          if (menu.open && e.target.closest('.mobile-menu__panel a')) {
+            menu.removeAttribute('open');
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && menu.open) {
+            menu.removeAttribute('open');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

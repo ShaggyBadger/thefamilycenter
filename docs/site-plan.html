@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Family Center — Website Plan</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      :root {
+        --navy: #182e43;
+        --blue: #315b91;
+        --coral: #c94f43;
+        --gold: #e8b74d;
+        --ink: #243447;
+        --muted: #5f6e7d;
+        --line: #d9e1e7;
+        --paper: #ffffff;
+        --wash: #f3f6f7;
+        --pale-blue: #edf3f8;
+        --pale-gold: #fbf5e8;
+        --pale-coral: #fbefed;
+      }
+
+      * { box-sizing: border-box; }
+      html { background: #e9eef2; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #e9eef2;
+        font: 10pt/1.52 Arial, Helvetica, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      main {
+        width: min(8.5in, 100%);
+        margin: 24px auto;
+        padding: 0.72in 0.72in 0.8in;
+        background: var(--paper);
+        box-shadow: 0 12px 42px rgb(24 46 67 / 12%);
+      }
+      h1, h2, h3, h4, p { margin-top: 0; }
+      h1, h2, h3 {
+        color: var(--navy);
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.14;
+      }
+      h1 { margin-bottom: 0.18in; font-size: 34pt; letter-spacing: -0.03em; }
+      h2 { margin: 0 0 0.16in; font-size: 23pt; }
+      h3 { margin: 0 0 0.08in; font-size: 14pt; }
+      h4 { margin: 0 0 0.06in; color: var(--navy); font-size: 10pt; }
+      p { margin-bottom: 0.11in; }
+      a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+      ul, ol { margin: 0.05in 0 0.13in; padding-left: 0.22in; }
+      li { margin: 0 0 0.055in; }
+      table { width: 100%; border-collapse: collapse; margin: 0.1in 0 0.18in; font-size: 8.6pt; }
+      th, td { border: 1px solid var(--line); padding: 0.09in 0.11in; text-align: left; vertical-align: top; }
+      th { color: var(--navy); background: var(--pale-blue); font-weight: 700; }
+      tr { break-inside: avoid; }
+      .eyebrow { margin-bottom: 0.12in; color: var(--coral); font-size: 8pt; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; }
+      .small { color: var(--muted); font-size: 8.5pt; }
+      .lead { max-width: 6.5in; color: var(--muted); font-size: 12pt; line-height: 1.55; }
+      .cover {
+        display: flex;
+        min-height: 8.8in;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.15in 0 0.1in;
+        break-after: page;
+      }
+      .cover-top { display: flex; justify-content: space-between; gap: 0.2in; align-items: center; }
+      .wordmark { color: var(--navy); font-weight: 700; letter-spacing: 0.02em; }
+      .wordmark-mark { display: inline-grid; width: 0.34in; height: 0.34in; margin-right: 0.07in; place-items: center; border-radius: 0.08in; background: var(--coral); color: #fff; font-family: Georgia, serif; }
+      .cover-label { color: var(--muted); font-size: 8pt; font-weight: 700; letter-spacing: 0.1em; text-align: right; text-transform: uppercase; }
+      .cover-title { margin-top: 1.45in; }
+      .cover-title h1 { max-width: 6in; font-size: 40pt; }
+      .cover-rule { width: 0.75in; height: 5px; margin: 0.24in 0; background: var(--gold); }
+      .cover-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.18in; max-width: 6in; margin-top: 0.35in; }
+      .meta-card { padding: 0.14in; border: 1px solid var(--line); border-radius: 0.08in; background: var(--wash); }
+      .meta-card strong { display: block; margin-bottom: 0.025in; color: var(--navy); font-size: 8pt; text-transform: uppercase; }
+      .cover-bottom { display: flex; justify-content: space-between; gap: 0.2in; border-top: 1px solid var(--line); padding-top: 0.13in; color: var(--muted); font-size: 8pt; }
+      .section { margin-bottom: 0.28in; }
+      .section + .section { margin-top: 0.25in; }
+      .page-break { break-before: page; }
+      .intent {
+        padding: 0.2in 0.22in;
+        border-left: 5px solid var(--gold);
+        border-radius: 0 0.08in 0.08in 0;
+        background: var(--pale-gold);
+        color: var(--navy);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 13pt;
+        line-height: 1.5;
+      }
+      .status-line { display: flex; flex-wrap: wrap; gap: 0.07in; margin: 0.1in 0 0.15in; }
+      .pill { display: inline-block; padding: 0.035in 0.09in; border: 1px solid var(--line); border-radius: 999px; background: var(--wash); color: var(--navy); font-size: 8pt; font-weight: 700; }
+      .pill.approved { border-color: #a7d3c4; background: #eaf5f1; color: #276b59; }
+      .pill.proposed { border-color: #ecd497; background: var(--pale-gold); color: #74581b; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.13in; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.11in; }
+      .card { padding: 0.14in 0.15in; border: 1px solid var(--line); border-radius: 0.09in; background: #fff; break-inside: avoid; }
+      .card.blue { background: var(--pale-blue); border-color: #d6e2ed; }
+      .card.gold { background: var(--pale-gold); border-color: #eadcb9; }
+      .card.coral { background: var(--pale-coral); border-color: #efd5d1; }
+      .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+      .callout { margin: 0.13in 0; padding: 0.13in 0.16in; border: 1px solid var(--line); border-radius: 0.08in; background: var(--wash); }
+      .callout.warning { border-left: 4px solid var(--coral); }
+      .callout.info { border-left: 4px solid var(--blue); }
+      .two-col { columns: 2; column-gap: 0.28in; }
+      .two-col li { break-inside: avoid; }
+      .checklist { list-style: none; padding-left: 0; }
+      .checklist li::before { content: "☐"; margin-right: 0.08in; color: var(--blue); font-weight: 700; }
+      .mono { font-family: "Courier New", monospace; font-size: 8.2pt; }
+      .subtle { color: var(--muted); }
+      .nowrap { white-space: nowrap; }
+      .footer-note { margin-top: 0.22in; border-top: 1px solid var(--line); padding-top: 0.08in; color: var(--muted); font-size: 8pt; }
+      .avoid-break { break-inside: avoid; }
+
+      @page {
+        size: Letter;
+        margin: 0.62in 0.62in 0.7in;
+        @bottom-left { content: "THE FAMILY CENTER · INTERNAL WORKING PLAN"; color: #66788a; font: 7pt Arial, sans-serif; }
+        @bottom-right { content: "Page " counter(page); color: #66788a; font: 7pt Arial, sans-serif; }
+      }
+      @media print {
+        html, body { background: #fff; }
+        main { width: auto; margin: 0; padding: 0; box-shadow: none; }
+        a { color: inherit; text-decoration: none; }
+        .cover { min-height: 9in; }
+        .page-break { break-before: page; }
+        h2, h3 { break-after: avoid; }
+        p, li { orphans: 3; widows: 3; }
+      }
+      @media screen and (max-width: 720px) {
+        main { margin: 0; padding: 0.28in 0.23in; }
+        .grid-2, .grid-3, .cover-meta { grid-template-columns: 1fr; }
+        .cover { min-height: auto; gap: 1in; }
+        .cover-title { margin-top: 0.55in; }
+        .cover-title h1 { font-size: 32pt; }
+        .two-col { columns: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="cover">
+        <div class="cover-top">
+          <div class="wordmark"><span class="wordmark-mark">FC</span> THE FAMILY CENTER</div>
+          <div class="cover-label">Internal planning document<br />26 September 2026</div>
+        </div>
+        <div class="cover-title">
+          <p class="eyebrow">Website plan · current direction</p>
+          <h1>A trusted local home for The Family Center</h1>
+          <div class="cover-rule"></div>
+          <p class="lead">Strategy, site structure, Wagtail plan, technical foundations, launch requirements, and open decisions in one place.</p>
+          <div class="status-line">
+            <span class="pill approved">Commander's Intent approved</span>
+            <span class="pill proposed">Full site plan still in planning</span>
+          </div>
+          <div class="cover-meta">
+            <div class="meta-card"><strong>Audience</strong>Families, community members, local businesses, and supporters</div>
+            <div class="meta-card"><strong>Primary platform</strong>Django + Wagtail + server-rendered templates</div>
+            <div class="meta-card"><strong>First launch</strong>Public information, events, contact, and external giving links</div>
+            <div class="meta-card"><strong>Implementation</strong>Wagtail foundation started; full site and launch content remain in progress</div>
+          </div>
+        </div>
+        <div class="cover-bottom"><span>Prepared for project planning and CEO discussion</span><span>Draft public copy and sample event data are not approved content</span></div>
+      </header>
+
+      <section class="section">
+        <p class="eyebrow">01 · Guiding intent</p>
+        <h2>What the site is for</h2>
+        <div class="intent">Build and continually improve a trusted, accessible, mobile-first, locally discoverable website that helps The Family Center advance its purpose of preparing elementary- and middle-school students to enter high school ready to thrive. Make CEO-approved information about the nonprofit's verified mission, current work, events, and ways to connect easy for families and supporters to find and use, while keeping future aspirations distinct from current services. Give the organization secure, maintainable tools to grow the site over time without exposing draft content or collecting more personal information than necessary.</div>
+        <p class="small" style="margin-top:0.09in">This is the approved project-wide intent. The owner has also approved the website-specific intent recorded in the decision log.</p>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">02 · Strategy</p>
+        <h2>Story and visitor paths</h2>
+        <p>Families and community members are the primary audience, and the site's main job is to make it easy for them to find and attend events. Businesses and supporters are secondary audiences. The site must distinguish verified current work from future aspirations.</p>
+        <div class="grid-3">
+          <div class="card blue"><h3>Bring people together</h3><p>Community events and fundraisers connect families, volunteers, businesses, and supporters.</p></div>
+          <div class="card gold"><h3>Meet immediate needs</h3><p>School-supply support is a possible part of the story; verify whether it is current before describing it as active work.</p></div>
+          <div class="card coral"><h3>Build toward the future</h3><p>More consistent youth-development opportunities are an aspiration until programs, capacity, and details are confirmed.</p></div>
+        </div>
+        <div class="grid-2" style="margin-top:0.13in">
+          <div class="card"><h3>Families and community members</h3><p>Find accurate event information, understand practical details, and decide whether and how to participate.</p></div>
+          <div class="card"><h3>Businesses and larger supporters</h3><p>Understand the verified work, explore giving or partnership options, and contact the organization.</p></div>
+        </div>
+        <div class="callout warning"><strong>Content discipline:</strong> All draft copy, claims, dates, addresses, sponsorship benefits, image permissions, and service descriptions need owner/CEO confirmation before publication. The provisional avatar and its assumptions are planning aids, not research findings.</div>
+      </section>
+
+      <section class="section page-break">
+        <p class="eyebrow">03 · Proposed site map</p>
+        <h2>Page types and navigation</h2>
+        <table>
+          <thead><tr><th>Page / type</th><th>Purpose</th><th>Initial status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>HomePage</strong></td><td>Explain the organization and offer clear paths to events and business support; highlight approved upcoming events.</td><td>One custom, designed Wagtail template with editable approved content.</td></tr>
+            <tr><td><strong>About</strong></td><td>Present the organization's approved story and background.</td><td>Separate standard Wagtail page; public wording requires owner/CEO approval.</td></tr>
+            <tr><td><strong>What We Do</strong></td><td>Explain verified current work and distinguish it from future aspirations.</td><td>Separate standard Wagtail page; no unlaunched services presented as current.</td></tr>
+            <tr><td><strong>EventsIndexPage</strong></td><td>Show upcoming and past events from their canonical event records.</td><td>Wagtail page in the Events app.</td></tr>
+            <tr><td><strong>EventPage</strong></td><td>Provide one stable page per event with date, time, place, cost, eligibility, schedule, and a real action.</td><td>Wagtail page with structured per-event fields; publish only after event details and the action are confirmed. Event cards are generated from these records.</td></tr>
+            <tr><td><strong>Business Partnerships</strong></td><td>Explain confirmed ways local businesses can help and provide a contact path.</td><td>Standard editorial page; package/recognition details need CEO approval.</td></tr>
+            <tr><td><strong>Business Partner profiles</strong></td><td>Recognize approved partners with name, logo, website, neutral acknowledgment, and an event-sponsor label when applicable.</td><td>Partners app and Wagtail-managed profiles; business contacts do not get site accounts. CEO and business contact approve the exact sponsor wording; tiers and benefits remain open.</td></tr>
+            <tr><td><strong>Donate</strong></td><td>Provide a direct giving route and verified nonprofit/tax/gift-use information.</td><td>External donation provider at first launch; no in-site payment processing.</td></tr>
+            <tr><td><strong>Contact</strong></td><td>Offer the contact form and a verified organization email address.</td><td>Wagtail ContactPage plus separately managed contact submissions; email is pending CEO confirmation.</td></tr>
+            <tr><td><strong>Gallery / Programs</strong></td><td>Show approved photos or active ongoing offerings.</td><td>Defer gallery until rights/consent are checked; add program pages only when offerings are confirmed.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout info"><strong>Navigation draft:</strong> Home · Events · What We Do · About · Business Partnerships · Contact, with a prominent “Partner with us” action. Donate, Get Involved, Gallery, and Privacy Notice are proposed supporting/footer links. Confirm the final structure after content review.</div>
+      </section>
+
+      <section class="section page-break">
+        <p class="eyebrow">04 · Application structure</p>
+        <h2>Separate apps for separate jobs</h2>
+        <table>
+          <thead><tr><th>Django app</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td><strong>accounts</strong></td><td>Custom Django user model and account behavior. Initial users: owner superuser and CEO staff/editor. No public registration at launch.</td></tr>
+            <tr><td><strong>pages</strong></td><td>HomePage, standard information page types, reusable page blocks, and shared editorial page behavior.</td></tr>
+            <tr><td><strong>events</strong></td><td>Events index, individual event pages, and upcoming/past date logic.</td></tr>
+            <tr><td><strong>contact</strong></td><td>Stored inquiries, notifications, permissions, and retention/deletion.</td></tr>
+            <tr><td><strong>partners</strong></td><td>Business supporter records and the no-account, email-based profile approval workflow.</td></tr>
+          </tbody>
+        </table>
+        <p>A homepage is a Wagtail page type, not a separate app. Wagtail supplies the CEO's page-editing interface; use Jazzmin to theme Django admin for the developer. No custom “admin app” is planned unless a real custom workflow is needed. Payment and program apps are deferred until those workflows are approved.</p>
+        <h3>How the homepage concept fits Wagtail</h3>
+        <p>The HTML mockup is a static visual concept, not a Wagtail page. Its custom section order, styling, and presentation belong in a Django template. Wagtail stores the approved heading/copy, image choices, links, and featured-event selection. Editors change content; they do not rearrange arbitrary page layouts.</p>
+        <ul>
+          <li><strong>Shared shell:</strong> project-level <span class="mono">templates/base.html</span> with shared navbar/footer includes and a named content block.</li>
+          <li><strong>Page templates:</strong> app-owned, namespaced templates such as <span class="mono">pages/home_page.html</span> and <span class="mono">events/event_page.html</span>, each extending the shared base.</li>
+          <li><strong>Wagtail blocks:</strong> Python definitions in app modules such as <span class="mono">pages/blocks.py</span>; optional HTML renderers live under namespaced app template folders. Use StreamField only for developer-approved editable components.</li>
+          <li><strong>Interactions:</strong> small Alpine behaviors live in the page/partial markup or bundled static JavaScript, not in block definitions.</li>
+        </ul>
+        <div class="callout warning">Wagtail 8.0 is integrated with Python 3.14.7 and Django 5.2.x. The custom user model, page/event models, contact inquiry model, starter templates, and initial Wagtail site tree are in place. Direct local SQLite development now uses <span class="mono">db-wagtail.sqlite3</span> so the pre-Wagtail scaffold database remains untouched.</div>
+      </section>
+
+      <section class="section page-break">
+        <p class="eyebrow">05 · Access and operations</p>
+        <h2>Who can do what</h2>
+        <h3>Separate admin experiences</h3>
+        <p>Use Jazzmin for the developer's full-access Django admin and Wagtail for the CEO's event-page editing. Navigation and styling are configured separately; Jazzmin does not theme Wagtail.</p>
+        <table>
+          <thead><tr><th>User</th><th>Interface and access</th><th>Navigation, appearance, and landing page</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Developer / owner</strong></td><td>Django admin superuser with full access; Wagtail developer tools as needed.</td><td>Jazzmin dark theme and full app/model menu. Keep the standard index; add a custom dashboard only if useful.</td></tr>
+            <tr><td><strong>CEO</strong></td><td>Wagtail editor, below superuser: create, edit, and publish EventPages under EventsIndexPage without review. No Django-model access.</td><td>Focus navigation on pages/events. Keep Wagtail's standard landing page; defer a custom dashboard.</td></tr>
+          </tbody>
+        </table>
+        <p>Use the organization's logo and site identity in both interfaces. Candidate asset: <span class="mono">media/legacy-site/data/files/tfc_logo_p2__1___1_-removebg-preview-1.png</span>. Local media is git-ignored, so confirm its durable production location when wiring it in. Jazzmin's dark theme applies to Django admin; Wagtail styling is separate.</p>
+        <ul>
+          <li>Create a custom user model before the first organization-specific migrations.</li>
+          <li>Create separate owner and CEO accounts. Keep the CEO below superuser and restrict Wagtail permissions to event content; the CEO can publish event pages directly.</li>
+          <li>No public login or business partner accounts at launch. Add editors only when requested, with least-privilege Wagtail groups.</li>
+          <li>Businesses submit profile details without accounts. TFC staff verify permission and draft the profile; an authorized business contact reviews an exact-version email preview and explicitly approves it before publication. The approval action must be a one-time, expiring, revision-bound, CSRF-protected POST; opening a link must never publish.</li>
+        </ul>
+        <h3>Contact, donations, and tracking</h3>
+        <ul>
+          <li>The contact form collects only name, email, and message. Store submissions until resolved; notify the CEO. Give the owner and CEO a limited Wagtail inbox to review and resolve inquiries, without general Django-model access for the CEO.</li>
+          <li>Delete resolved messages after 90 days and unresolved messages after one year at the latest. Do not solicit sensitive details about children in a general contact form.</li>
+          <li>Use external donation and event-registration links at first launch. Do not process payments or store card data in Django.</li>
+          <li>Plan for Google Analytics and Search Console with owner-provided access. No advertising pixels unless separately approved and covered by the privacy approach.</li>
+        </ul>
+        <h3>Photo handling</h3>
+        <p>Only upload photos after reuse permission and required subject/guardian consent are confirmed, especially for young people. The CEO may publish approved images. Add accurate alt text after visual review.</p>
+      </section>
+
+      <section class="section page-break">
+        <p class="eyebrow">06 · Technical foundation</p>
+        <h2>Build and data flow</h2>
+        <div class="grid-3">
+          <div class="card blue"><h3>Local CEO demo</h3><p>SQLite database for Wagtail content authoring and demonstration.</p></div>
+          <div class="card gold"><h3>Local rehearsal</h3><p>Docker Compose PostgreSQL service runs on the developer’s machine for migration and schema rehearsal; do not copy the SQLite database file.</p></div>
+          <div class="card coral"><h3>Production</h3><p>Linode-hosted PostgreSQL and planned Linode Object Storage for durable media.</p></div>
+        </div>
+        <p style="margin-top:0.12in">Keep the schema portable with Django migrations. Initialize production PostgreSQL from those migrations, then enter the CEO-approved launch pages directly in production Wagtail. Do not copy or rsync <span class="mono">db.sqlite3</span> to the Linode server: PostgreSQL cannot use a SQLite database file, and copying it moves the entire database rather than only approved public content. Create production accounts separately. Wagtail Transfer may be evaluated later if repeated promotion justifies a hosted staging source; test page dependencies and media bytes before adopting it.</p>
+        <div class="callout warning"><strong>Tunnel rule:</strong> An SSH tunnel connects to the real remote database; it is not a local copy. Do not use Linode PostgreSQL as the routine target for local development. Use local SQLite or the local Compose PostgreSQL service.</div>
+        <h3>Media snapshot</h3>
+        <p>Thirty-two images from the public site were downloaded under the git-ignored <span class="mono">media/legacy-site/</span> folder, with source URLs in its manifest. Their permissions and people depicted have not been verified. Media files are not stored in Git; transfer approved assets to object storage separately from database records.</p>
+        <h3>Stack and tests</h3>
+        <p>Current project: Python 3.14.7, Django 5.2.x, Wagtail 8.0, PostgreSQL in Docker Compose, and SQLite for local demo work. Planned frontend: Django templates, Tailwind CSS, daisyUI, and Alpine.js for small interactions. The initial server-rendered templates and semantic design tokens are in place; the five theme variants remain to be built.</p>
+        <p>Write tests with each feature and organize them so a single test, app suite, or focused group can run independently. Required security coverage includes CSRF, authentication, role/object permissions, and payment boundaries when introduced.</p>
+        <pre class="mono">python manage.py test app.tests.unit.test_models.ModelTests.test_expected_behavior
+python manage.py test app.tests.unit app.tests.security
+python manage.py test app
+python manage.py test</pre>
+      </section>
+
+      <section class="section page-break">
+        <p class="eyebrow">07 · Search and launch readiness</p>
+        <h2>SEO and site-quality baseline</h2>
+        <ul class="checklist">
+          <li>Unique, accurate title and description for every public page.</li>
+          <li>Stable readable URLs, self-consistent canonical URLs, and redirects for replaced legacy paths.</li>
+          <li>Production <span class="mono">robots.txt</span> allows approved public content and points to the XML sitemap; local/demo/staging uses access controls and noindex protections.</li>
+          <li>XML sitemap contains only published, canonical, indexable pages—not drafts, admin pages, previews, or avatar variants.</li>
+          <li>Organization and event structured data matches verified content visible on the page.</li>
+          <li>Approved favicon/browser icons, social preview metadata, image alt text, mobile usability, accessible focus/contrast, and fast loading.</li>
+          <li>Consistent verified name, address, phone, and service area; confirm the Google Business Profile with the owner.</li>
+          <li>After launch, verify Search Console, submit the sitemap, and review indexing and coverage.</li>
+        </ul>
+        <p class="small">Favicons support site identity and browser usability; they are not a search-ranking factor. No ranking result is guaranteed. Analytics, pixels, and privacy statements must match the tools actually enabled.</p>
+        <h3>Launch sequence</h3>
+        <ol>
+          <li>Finish strategy and content ideas; confirm active services, public facts, business support terms, event details, and audience direction.</li>
+          <li>Finish owner/CEO review of the full plan; the website-specific Commander's Intent is approved.</li>
+          <li>Continue the Wagtail foundation; choose and test a compatible Jazzmin version; configure the developer's dark Jazzmin admin and the CEO's event-focused Wagtail publishing access; complete accounts, pages, events, contact, and partners with migrations and focused tests.</li>
+          <li>Review and approve content, media, contact/privacy rules, and SEO metadata.</li>
+          <li>Build the local SQLite CEO demo; rehearse migrations against local PostgreSQL. After CEO approval, enter the selected public content directly in the fresh production Wagtail site.</li>
+          <li>Deploy to Linode only after the plan and launch content are approved; provision the production superuser and CEO account separately.</li>
+          <li>Move approved media to object storage, verify redirects/robots/sitemap/schema/mobile/accessibility, then connect owner-managed Analytics and Search Console.</li>
+          <li>After the owner verifies the CEO-selected content in production, archive the demo/source JSON and remove unselected content alternatives from the public site.</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">08 · Still to confirm</p>
+        <h2>Open questions for the owner and CEO</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Organization and content</h3><ul><li>Review the synthesized mission and vision drafts with the CEO and define “thrive in high school”; verify whether school-supply support is current.</li><li>Next real events and complete logistics.</li><li>Business sponsorship options, donation use, recognition/benefits, nonprofit/tax wording, and shareable evidence.</li><li>Confirm public address and remaining contact details; service area is Winston-Salem, North Carolina.</li></ul></div>
+          <div class="card"><h3>Operations and launch</h3><ul><li>Confirm the public organization email and sender/provider with the CEO; contact retention is set to 90 days after resolution, with a one-year maximum for unresolved inquiries.</li><li>Verify photo reuse permission and required consent.</li><li>Confirm Google Business Profile access, exact URL redirects, and analytics measurement actions.</li><li>Choose a compatible Jazzmin version. Wagtail 8.0 compatibility has passed an isolated smoke test; a full Wagtail Transfer round-trip is optional future work.</li></ul></div>
+        </div>
+        <div class="callout warning" style="margin-top:0.16in"><strong>Planning status:</strong> The project and plan-specific Commander's Intents are approved, and the Wagtail foundation is underway. The full public site and approved content are not complete. Draft copy, event placeholders, partnership terms, and unverified facts are not approved for publication.</div>
+        <p class="footer-note">Prepared from the project brief, technical conventions, decision log, current source-site inventory, and local homepage concept. Internal planning document; not public copy. Last reviewed: 26 September 2026.</p>
+      </section>
+    </main>
+  </body>
+</html>

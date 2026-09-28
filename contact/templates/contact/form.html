@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section class="contact-band">
+    <div>
+      <h2>Stay connected</h2>
+      <p>Find an event, ask about current support, or talk with The Family Center about a business partnership.</p>
+    </div>
+    <div>
+      <a class="button" href="/events">Explore events</a>
+      <a class="button button--outline" href="/business-partnerships">Partner with us</a>
+    </div>
+  </section>
+
+  <section class="donation-section" style="margin-top: 2rem;">
+    <div class="donation-section__copy">
+      <h2>Get in touch</h2>
+      <p>Have a question, want to volunteer, or looking to support The Family Center? Reach out and we'll get back to you.</p>
+      <p><strong>The Family Center, Inc.</strong><br>Winston-Salem, North Carolina<br>office@thefamilycenternc.org<br>(980) 321-9140</p>
+    </div>
+  </section>
+
+  <section class="contact-form-section">
+    <div class="contact-form-section__inner">
+      <div class="section-heading">
+        <h2>Send us a message</h2>
+        <p class="section-kicker">Quick contact</p>
+      </div>
+
+      {% if messages %}
+        <div class="contact-form-messages">
+          {% for message in messages %}
+            <p class="contact-form-message contact-form-message--{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <form class="contact-form" method="post" novalidate>
+        {% csrf_token %}
+        <div class="contact-form__field">
+          <label for="id_name">Name</label>
+          {{ form.name }}
+          {% if form.name.errors %}
+            <p class="contact-form__error">{{ form.name.errors }}</p>
+          {% endif %}
+        </div>
+        <div class="contact-form__field">
+          <label for="id_email">Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <p class="contact-form__error">{{ form.email.errors }}</p>
+          {% endif %}
+        </div>
+        <div class="contact-form__field">
+          <label for="id_message">Message</label>
+          {{ form.message }}
+          {% if form.message.errors %}
+            <p class="contact-form__error">{{ form.message.errors }}</p>
+          {% endif %}
+        </div>
+        <button class="button button--gold" type="submit">Send message</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

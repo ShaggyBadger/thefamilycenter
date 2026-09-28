@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <section class="events-page" aria-labelledby="page-title">
+    <header class="events-heading">
+      <p class="section-kicker">Gather with us</p>
+      <h1 id="page-title">{{ page.title }}</h1>
+      {% if page.intro %}<div class="rich-text">{{ page.intro|richtext }}</div>{% endif %}
+    </header>
+    <h2 class="events-subheading">Upcoming events</h2>
+    {% if upcoming_events %}
+      <ul class="event-grid">
+        {% for event in upcoming_events %}
+            <li class="event-card{% if forloop.counter|divisibleby:2 %} event-card--red{% endif %}">
+              <p class="event-list__date"><time datetime="{{ event.start_datetime|date:'c' }}">{{ event.start_datetime|date:'D, M j · g:i A T' }}</time></p>
+              <h3><a href="{{ event.url }}">{{ event.title }}</a></h3>
+            {% if event.summary %}<p class="event-card__summary">{{ event.summary }}</p>{% endif %}
+            {% if event.venue_name %}<p class="event-card__venue">{{ event.venue_name }}</p>{% endif %}
+            {% if event.cost %}<p class="event-card__cost">{{ event.cost }}</p>{% endif %}
+            <a class="button button--small" href="{{ event.url }}">Event details</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No upcoming events are listed right now.</p>
+    {% endif %}
+
+    {% if past_events %}
+      <details class="past-events">
+        <summary>Past events</summary>
+        <ul class="past-event-list">
+          {% for event in past_events %}
+            <li>
+              <time datetime="{{ event.start_datetime|date:'c' }}">{{ event.start_datetime|date:'M j, Y' }}</time>
+              <a href="{{ event.url }}">{{ event.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </details>
+    {% endif %}
+  </section>
+{% endblock %}

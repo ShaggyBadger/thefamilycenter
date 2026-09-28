@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "document": {
+    "title": "Family Center local demo site content",
+    "purpose": "Illustrative content seed for exploring a local nonprofit marketing hub and future Wagtail structure, with clear event/family and business-supporter paths.",
+    "status": "local_demo_draft_not_approved",
+    "created_on": "2026-09-25",
+    "not_for_publication": true,
+    "source_inventory": "instructions/thefamilycenternc-content-inventory.json",
+    "strategy_brief": "instructions/family-center-strategy-and-site-brief.md",
+    "lifecycle": {
+      "temporary_seed_data": true,
+      "deprecate_when": "CEO-approved real organizational data has replaced the draft values in the deployed site and the owner has verified the live content.",
+      "archive_to": "content/archive/",
+      "archive_as": "demo-site-content-YYYY-MM-DD.json",
+      "archive_action": "Record the replacement source and deployment/verification date; preserve the dated JSON snapshot rather than deleting it."
+    },
+    "instructions": [
+      "This file combines source-site snapshots, owner-reported planning context, draft copy, and invented event examples.",
+      "Every page has a stable key under pages; each event example is a separate page key and is explicitly marked demo-only.",
+      "Do not publish dates, venues, claims, contact details, images, or copy without the indicated owner review and confirmation.",
+      "The service lists on the old homepage and Our Services page conflict; this draft keeps current work and future aspirations distinct.",
+      "Keep private demographic planning context out of all external copy. Use organization-approved public language and do not invent impact, sponsorship benefits, or donation allocations."
+    ]
+  },
+  "navigation": [
+    { "label": "Home", "page_key": "home" },
+    { "label": "Events", "page_key": "events" },
+    { "label": "What We Do", "page_key": "what-we-do" },
+    { "label": "About", "page_key": "about" },
+    { "label": "Business Partnerships", "page_key": "business-partnerships" },
+    { "label": "Contact", "page_key": "contact" }
+  ],
+  "navigation_cta": { "label": "Partner with us", "page_key": "business-partnerships", "status": "proposed_needs_owner_review" },
+  "footer_navigation": [
+    { "label": "Donate", "page_key": "donate" },
+    { "label": "Get Involved", "page_key": "get-involved" },
+    { "label": "Gallery", "page_key": "gallery" },
+    { "label": "Privacy Notice", "page_key": "privacy-policy" }
+  ],
+  "marketing_direction": {
+    "visitor_paths": [
+      { "audience": "Families and community members", "job": "Find accurate event information and decide whether/how to attend.", "primary_page_key": "events" },
+      { "audience": "Businesses and larger supporters", "job": "Understand the work, evaluate ways to support it, and start a partnership conversation.", "primary_page_key": "business-partnerships" }
+    ],
+    "fundraising_emphasis": "Prioritize business giving and sponsorship conversations while keeping direct donation actions easy to find.",
+    "event_page_campaign_rule": "Send event ads to the matching canonical event page and make the ad-specific next action prominent. Avoid duplicate public pages for alternate avatar or campaign copy.",
+    "measurement_candidates": ["business partnership inquiries", "donation clicks or completions where measurable", "event registration or ticket clicks", "event-information contact actions"],
+    "measurement_status": "Agree on analytics, privacy, and conversion definitions before enabling tracking."
+  },
+  "event_page_content_requirements": [
+    "Confirmed date, start/end time, time zone, venue, and full address",
+    "Who the event is for and any eligibility or age/grade details",
+    "Cost, ticketing/registration, availability, and event-specific action",
+    "Schedule, what to expect, food, and what to bring when applicable",
+    "Accessibility, transportation, parking, and contact details when confirmed",
+    "For fundraisers, a clear explanation of the event's purpose and a separate sponsor/support action when applicable"
+  ],
+  "pages": {
+    "home": {
+      "slug": "/",
+      "page_type": "home_page",
+      "content_status": "draft_from_source_and_strategy",
+      "title": "The Family Center",
+      "seo": {
+        "title": "The Family Center | Community and Youth Support",
+        "description": "Draft description for the local demo. Confirm the organization's service area and current offerings before publication.",
+        "status": "draft_needs_owner_review"
+      },
+      "sections": [
+        {
+          "type": "hero",
+          "heading": "Bringing Winston-Salem together to support local young people",
+          "subheading": "Find community events, learn about practical support, or explore ways your business can help.",
+          "content_basis": "New positioning direction for discussion; confirm service geography and public wording with the organization.",
+          "review_status": "draft_needs_owner_review",
+          "image": null,
+          "image_alt": null,
+          "calls_to_action": [
+            { "label": "Partner with us", "page_key": "business-partnerships", "priority": "primary" },
+            { "label": "Find an event", "page_key": "events", "priority": "primary_audience_path" }
+          ]
+        },
+        {
+          "type": "intro",
+          "heading": "Community support, growing together",
+          "body": "The Family Center brings the community together, helps meet practical needs, and is exploring ways to support young people over time. This draft separates current activities from future plans.",
+          "content_basis": "Strategy brief; owner confirmation and copy editing required.",
+          "review_status": "draft_needs_owner_review"
+        },
+        {
+          "type": "audience_paths",
+          "heading": "Choose your next step",
+          "items": [
+            {
+              "title": "Looking for an event?",
+              "summary": "See upcoming community events and check the details before you go.",
+              "call_to_action": { "label": "Explore events", "page_key": "events" }
+            },
+            {
+              "title": "Interested in supporting local young people?",
+              "summary": "Learn how your business can support The Family Center's work and start a conversation.",
+              "call_to_action": { "label": "Explore business partnerships", "page_key": "business-partnerships" }
+            }
+          ],
+          "review_status": "draft_needs_owner_review"
+        },
+        {
+          "type": "focus_areas",
+          "items": [
+            {
+              "title": "Bring the community together",
+              "summary": "Community events create opportunities for families, neighbors, volunteers, and partners to connect.",
+              "availability": "Current work described by the owner; confirm details."
+            },
+            {
+              "title": "Meet immediate needs",
+              "summary": "Practical support such as school-supply efforts can help young people and families.",
+              "availability": "Current work described by the owner; confirm what is active."
+            },
+            {
+              "title": "Build toward ongoing youth development",
+              "summary": "The organization is exploring more consistent supports for young people.",
+              "availability": "Aspiration only; do not present as an active program."
+            }
+          ]
+        },
+        {
+          "type": "upcoming_events",
+          "event_page_keys": [
+            "event-family-resource-day",
+            "event-youth-ideas-workshop",
+            "event-spring-community-celebration"
+          ],
+          "demo_notice": "These are invented placeholder events, not confirmed organization events."
+        },
+        {
+          "type": "business_support_callout",
+          "heading": "Bring your business into the work",
+          "body": "Local businesses can help make community events and practical support possible. Talk with The Family Center about current needs and ways to contribute.",
+          "call_to_action": { "label": "Start a partnership conversation", "page_key": "business-partnerships" },
+          "secondary_call_to_action": { "label": "Make a donation", "page_key": "donate" },
+          "content_basis": "Draft direction only; confirm current needs, accepted contribution types, and approved public language.",
+          "review_status": "draft_needs_owner_review"
+        }
+      ]
+    },
+    "about": {
+      "slug": "/about",
+      "page_type": "standard_content_page",
+      "content_status": "planning_draft_needs_owner_review",
+      "title": "About The Family Center",
+      "seo": {
+        "title": "About The Family Center",
+        "description": "Draft page description; confirm approved mission, service area, and organizational details.",
+        "status": "draft_needs_owner_review"
+      },
+      "sections": [
+        {
+          "type": "intro",
+          "heading": "Rooted in community",
+          "body": "The Family Center's work brings people together around opportunities and practical support for local young people.",
+          "content_basis": "Draft extrapolated from the source inventory and strategy brief.",
+          "review_status": "draft_needs_owner_review"
+        },
+        {
+          "type": "mission_vision_working_copy",
+          "mission_heading": "Our mission",
+          "mission_body": "DRAFT FOR CEO REVIEW — The Family Center works to help elementary- and middle-school students in Winston-Salem enter high school ready to thrive, with the confidence, skills, and support to pursue a future that fits them.",
+          "vision_heading": "Our vision",
+          "vision_body": "DRAFT FOR CEO REVIEW — We envision a Winston-Salem where young people are connected to their families, schools, businesses, and community—and have the support and opportunities to thrive in high school and pursue futures that fit them.",
+          "content_basis": "The mission and vision sentences are syntheses for CEO review based on the owner-approved Project Commander's Intent and mission/vision wording observed in the 2026-09-25 public-site inventory. They avoid asserting unconfirmed active programs and are not approved public statements.",
+          "review_status": "requires_ceo_review_and_community_input"
+        },
+        {
+          "type": "current_work_and_future_direction",
+          "heading": "What is happening now—and what we are building toward",
+          "body": "Describe confirmed community events and practical support separately from youth-development ideas that are still being explored.",
+          "review_status": "confirm_active_work_and_approved_future_framing"
+        }
+      ]
+    },
+    "what-we-do": {
+      "slug": "/what-we-do",
+      "page_type": "standard_content_page",
+      "content_status": "planning_draft",
+      "title": "What We Do",
+      "seo": {
+        "title": "What We Do | The Family Center",
+        "description": "Draft description; add accurate local detail after confirming services and service area.",
+        "status": "draft_needs_owner_review"
+      },
+      "sections": [
+        {
+          "type": "content_cards",
+          "items": [
+            {
+              "title": "Community events",
+              "summary": "Gatherings and fundraisers can help families, supporters, and community partners connect.",
+              "availability": "Owner-reported current activity; confirm upcoming events and operational details."
+            },
+            {
+              "title": "Practical support for young people",
+              "summary": "School-supply efforts are one example of practical support described during planning.",
+              "availability": "Owner-reported example; confirm what is currently offered."
+            },
+            {
+              "title": "Ongoing youth development",
+              "summary": "Mentoring, classes, and seminars are possibilities the organization hopes to develop.",
+              "availability": "Future aspiration; not an active service claim."
+            }
+          ]
+        },
+        {
+          "type": "source_lists_for_reconciliation",
+          "homepage_list": [
+            "Educational Enrichment",
+            "Vocational Training",
+            "Nutrition Enhancement",
+            "Mentoring Program"
+          ],
+          "our_services_page_list": [
+            "Leadership Programs",
+            "Mental Health Services",
+            "Arts and Culture",
+            "Community Service",
+            "Healthy Living",
+            "Career Readiness"
+          ],
+          "review_status": "conflicting_legacy_lists_confirm_active_services_with_owner"
+        }
+      ]
+    },
+    "events": {
+      "slug": "/events",
+      "page_type": "events_index_page",
+      "content_status": "demo_draft",
+      "title": "Events",
+      "seo": {
+        "title": "Community Events | The Family Center",
+        "description": "Draft events page description; publish only confirmed event information.",
+        "status": "draft_needs_owner_review"
+      },
+      "intro": "Find upcoming events, check the practical details, and choose the next step that works for you.",
+      "event_page_keys": [
+        "event-family-resource-day",
+        "event-youth-ideas-workshop",
+        "event-spring-community-celebration"
+      ],
+      "listing_behavior": "In the planned site, upcoming events should be derived from confirmed event pages; past events may be archived.",
+      "demo_notice": "All event pages referenced here are fictional examples for layout/content exploration."
+    },
+    "event-family-resource-day": {
+      "slug": "/events/family-resource-day",
+      "page_type": "event_page",
+      "content_status": "demo_placeholder_do_not_publish",
+      "is_placeholder": true,
+      "title": "Family Resource Day",
+      "summary": "Placeholder copy for a sample gathering where families could learn about local resources and community opportunities.",
+      "start_date": "2026-10-24",
+      "start_time": "11:00",
+      "end_time": "14:00",
+      "time_zone": "America/New_York",
+      "venue": "PLACEHOLDER — confirm venue",
+      "address": "PLACEHOLDER — confirm address",
+      "cost": "PLACEHOLDER — confirm cost",
+      "what_to_bring": "PLACEHOLDER — confirm whether anything is needed",
+      "details": "This fictional event is included to demonstrate a page with practical event information. Replace every detail with an organization-approved event before use.",
+      "image": null,
+      "image_alt": null,
+      "call_to_action": { "label": "PLACEHOLDER — confirm registration or contact action", "url": null },
+      "demo_banner": "DEMO PLACEHOLDER — NOT A CONFIRMED EVENT"
+    },
+    "event-youth-ideas-workshop": {
+      "slug": "/events/youth-ideas-workshop",
+      "page_type": "event_page",
+      "content_status": "demo_placeholder_do_not_publish",
+      "is_placeholder": true,
+      "title": "Youth Ideas Workshop",
+      "summary": "Placeholder copy for a sample youth gathering focused on sharing ideas about activities and opportunities.",
+      "start_date": "2026-11-14",
+      "start_time": "13:00",
+      "end_time": "15:00",
+      "time_zone": "America/New_York",
+      "venue": "PLACEHOLDER — confirm venue",
+      "address": "PLACEHOLDER — confirm address",
+      "cost": "PLACEHOLDER — confirm cost",
+      "age_range": "PLACEHOLDER — confirm age or grade range",
+      "details": "This fictional event demonstrates how a workshop page might describe its purpose. Do not imply that a workshop or youth program is currently operating.",
+      "image": null,
+      "image_alt": null,
+      "call_to_action": { "label": "PLACEHOLDER — confirm registration or contact action", "url": null },
+      "demo_banner": "DEMO PLACEHOLDER — NOT A CONFIRMED EVENT"
+    },
+    "event-spring-community-celebration": {
+      "slug": "/events/spring-community-celebration",
+      "page_type": "event_page",
+      "content_status": "demo_placeholder_do_not_publish",
+      "is_placeholder": true,
+      "title": "Spring Community Celebration",
+      "summary": "Placeholder copy for a sample seasonal community gathering.",
+      "start_date": "2027-04-03",
+      "start_time": "11:00",
+      "end_time": "14:00",
+      "time_zone": "America/New_York",
+      "venue": "PLACEHOLDER — confirm venue",
+      "address": "PLACEHOLDER — confirm address",
+      "cost": "PLACEHOLDER — confirm cost",
+      "details": "This fictional example exists only to help explore an event landing page and upcoming-events card.",
+      "image": null,
+      "image_alt": null,
+      "call_to_action": { "label": "PLACEHOLDER — confirm registration or contact action", "url": null },
+      "demo_banner": "DEMO PLACEHOLDER — NOT A CONFIRMED EVENT"
+    },
+    "gallery": {
+      "slug": "/gallery",
+      "page_type": "gallery_page",
+      "content_status": "demo_draft_images_need_review",
+      "title": "Community Gallery",
+      "seo": {
+        "title": "Community Gallery | The Family Center",
+        "description": "Draft gallery page description; confirm image selection, subject context, and permissions.",
+        "status": "draft_needs_owner_review"
+      },
+      "items": [
+        {
+          "image": "media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg",
+          "alt_text": "",
+          "alt_text_status": "write_after_visual_review",
+          "permission_status": "unconfirmed"
+        },
+        {
+          "image": "media/legacy-site/data/gallery/gallery1/img/resized-20240810-132005..jpg",
+          "alt_text": "",
+          "alt_text_status": "write_after_visual_review",
+          "permission_status": "unconfirmed"
+        },
+        {
+          "image": "media/legacy-site/data/gallery/gallery1/img/sneakerballinvitation2.jpg",
+          "alt_text": "",
+          "alt_text_status": "write_after_visual_review",
+          "permission_status": "unconfirmed"
+        }
+      ],
+      "demo_notice": "Images are shown as local-file references only. Review content and confirm permission, especially for photos of minors, before public use."
+    },
+    "get-involved": {
+      "slug": "/get-involved",
+      "page_type": "standard_content_page",
+      "content_status": "draft_needs_owner_review",
+      "title": "Get Involved",
+      "seo": {
+        "title": "Get Involved | The Family Center",
+        "description": "Draft invitation to connect, volunteer, or support the organization; confirm current opportunities first.",
+        "status": "draft_needs_owner_review"
+      },
+      "sections": [
+        {
+          "type": "call_to_action",
+          "heading": "Be part of the community",
+          "body": "Interested in volunteering or taking part in community activities? Contact The Family Center to learn which opportunities are currently available.",
+          "content_basis": "Draft copy; confirm volunteer process and current opportunities.",
+          "review_status": "draft_needs_owner_review",
+          "contact_page_key": "contact"
+        }
+      ],
+      "purpose": "Volunteer and community participation opportunities; keep separate from the business-partnership and direct-donation paths.",
+      "review_status": "confirm_volunteer_process_and_current_opportunities"
+    },
+    "business-partnerships": {
+      "slug": "/business-partnerships",
+      "page_type": "standard_content_page",
+      "content_status": "planning_draft_needs_owner_review",
+      "title": "Business Partnerships | The Family Center",
+      "seo": {
+        "title": "Business Partnerships | The Family Center",
+        "description": "Draft description: Explore ways Winston-Salem businesses can support The Family Center's work with local young people. Confirm service area and public wording before publication.",
+        "status": "draft_needs_owner_review"
+      },
+      "sections": [
+        {
+          "type": "hero",
+          "heading": "Partner with The Family Center to support local young people",
+          "body": "Businesses can help bring the community together and support practical opportunities for local young people. Contact us to discuss current needs and a partnership that makes sense.",
+          "call_to_action": { "label": "Start a partnership conversation", "page_key": "contact" },
+          "secondary_call_to_action": { "label": "Make a donation", "page_key": "donate" },
+          "review_status": "confirm_organization_language_and_service_area"
+        },
+        {
+          "type": "partnership_options",
+          "heading": "Ways to support the work",
+          "items": [
+            { "title": "Sponsor a community event", "availability": "Confirm sponsorship opportunities, timing, and any recognition benefits." },
+            { "title": "Make a business donation", "availability": "Confirm the approved donation path and any restrictions on how gifts are used." },
+            { "title": "Contribute goods or services", "availability": "Confirm current in-kind needs and delivery/coordination process." },
+            { "title": "Engage your employees", "availability": "Confirm volunteer opportunities, age-related boundaries, and supervision requirements before promoting." }
+          ],
+          "review_status": "proposed_options_not_yet_confirmed"
+        },
+        {
+          "type": "trust_and_accountability",
+          "heading": "Know what your support makes possible",
+          "body": "Explain how contributions support confirmed activities, using only verified financial information, outcomes, partner acknowledgments, and stories approved for publication.",
+          "review_status": "requires_verified_evidence_and_owner_approval"
+        },
+        {
+          "type": "faq",
+          "items_to_answer": [
+            "What is the organization's confirmed nonprofit/tax status?",
+            "How can a business make a donation or sponsor an event?",
+            "What sponsorship levels, recognition, or receipts are actually offered?",
+            "Who should a prospective partner contact, and what happens next?"
+          ],
+          "review_status": "owner_information_needed"
+        }
+      ]
+    },
+    "donate": {
+      "slug": "/donate",
+      "page_type": "donation_landing_page",
+      "content_status": "planning_draft_needs_owner_review",
+      "title": "Donate | The Family Center",
+      "seo": {
+        "title": "Donate to The Family Center",
+        "description": "Draft donation page description; confirm the donation destination, nonprofit details, and approved explanation of how gifts are used.",
+        "status": "draft_needs_owner_review"
+      },
+      "intro": "Your contribution can support The Family Center's work with local young people. Confirm current funding priorities and the approved donation process before inviting gifts.",
+      "donation_url": {
+        "value": "https://www.paypal.com/donate/?hosted_button_id=UN5QK98QJE7F6",
+        "source": "Current public site snapshot",
+        "review_status": "confirm_destination_account_and_gift_use_before_use"
+      },
+      "required_before_publication": [
+        "Confirm the donation processor, destination account, and receipt/acknowledgment process.",
+        "Confirm legal nonprofit and tax-deductibility language with the organization.",
+        "Explain gift use accurately; do not promise a specific per-student or per-item result unless it is tracked and verified.",
+        "Offer a clear route for business sponsors who need a conversation or documentation."
+      ],
+      "business_partnership_page_key": "business-partnerships",
+      "review_status": "owner_review_required"
+    },
+    "contact": {
+      "slug": "/contact",
+      "page_type": "contact_page",
+      "content_status": "source_snapshot_needs_confirmation",
+      "title": "Contact The Family Center",
+      "seo": {
+        "title": "Contact The Family Center",
+        "description": "Contact details copied from the current public site; confirm before publication.",
+        "status": "draft_needs_owner_review"
+      },
+      "organization_name": "The Family Center, Inc.",
+      "phone": {
+        "value": "(980) 321-9140",
+        "source": "Current public site snapshot",
+        "review_status": "confirm_before_use"
+      },
+      "email": {
+        "value": "office@thefamilycenternc.org",
+        "source": "Current public site snapshot",
+        "review_status": "confirm_before_use"
+      },
+      "address": null,
+      "address_note": "The source site's published mailing address appears malformed; confirm the correct public mailing or service address before adding it.",
+      "form": {
+        "status": "not_implemented",
+        "demo_copy": "Contact form placeholder — choose fields, notification recipient, spam protection, privacy notice, and retention before implementation."
+      }
+    },
+    "privacy-policy": {
+      "slug": "/privacy-policy",
+      "page_type": "standard_content_page",
+      "content_status": "placeholder_requires_owner_and_adviser_review",
+      "title": "Privacy Notice",
+      "seo": {
+        "title": "Privacy Notice | The Family Center",
+        "description": "Placeholder privacy page; replace after reviewing the website's actual data collection and tools.",
+        "status": "draft_needs_owner_review"
+      },
+      "body": "Privacy notice placeholder. Describe the information this website actually collects, why it is collected, who receives it, how long it is retained, and how people can contact the organization about it.",
+      "review_note": "Do not reuse the legacy source policy verbatim; the source snapshot contains mismatched domain and audience references."
+    }
+  }
+}

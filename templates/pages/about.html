@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section class="about-band">
+    <div class="about-band__inner">
+      <div class="about-band__text">
+        <p class="section-kicker">About Us</p>
+        <h2>Showing up today. Building toward tomorrow.</h2>
+        <p class="about-band__copy">
+          The Family Center brings the community together through events and practical support for local young people in Winston-Salem and Forsyth County, North Carolina.
+        </p>
+        <div class="future-note">
+          <p class="future-note-heading">Where the work is headed</p>
+          <p>
+            The Family Center wants students to have support and opportunities to thrive in high school and pursue a future that fits them. More ongoing opportunities are a goal the organization is exploring — not a promise of programs already in place.
+          </p>
+        </div>
+      </div>
+      <div class="about-band__image">
+        <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Families and community members gathered outdoors at a community event in Winston-Salem." loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="vision-mission" aria-labelledby="vision-heading">
+    <div class="vision-mission__inner">
+      <div class="section-heading">
+        <h2 id="vision-heading">Our purpose, our promise</h2>
+        <p class="section-kicker">Who we are</p>
+      </div>
+
+      <div class="vision-mission__grid">
+        <article class="vision-card">
+          <div class="vision-card__icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="20" stroke="var(--primary)" stroke-width="2"/>
+              <path d="M24 14V24L32 32" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 id="vision-heading">Our Vision</h3>
+          <p>
+            Every young person in Winston-Salem has the resources, relationships, and
+            confidence to grow into a thriving adult. We imagine a community where
+            opportunity is not determined by zip code, and every family has a seat at the table.
+          </p>
+          <a class="vision-card__link" href="/contact">Join the vision →</a>
+        </article>
+
+        <article class="mission-card">
+          <div class="mission-card__icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 6L4 16V32L24 42L44 32V16L24 6Z" stroke="var(--secondary)" stroke-width="2"/>
+              <path d="M24 14L16 19V29L24 34L32 29V19L24 14Z" fill="var(--secondary)" opacity="0.2"/>
+              <circle cx="24" cy="24" r="4" fill="var(--secondary)"/>
+            </svg>
+          </div>
+          <h3 id="mission-heading">Our Mission</h3>
+          <p>
+            We connect families, neighbors, volunteers, and businesses through community
+            events, practical support for students, and long-term programs that create
+            lasting change. Every gathering, every supply drive, and every partnership
+            moves us closer to a stronger community.
+          </p>
+          <a class="mission-card__link" href="/what-we-do">See what we do →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-band" aria-labelledby="values-heading">
+    <div class="values-band__inner">
+      <div class="section-heading">
+        <h2 id="values-heading">What drives us</h2>
+        <p class="section-kicker">Our core values</p>
+      </div>
+
+      <div class="values-grid">
+        <article class="values-item">
+          <h3>Community first</h3>
+          <p>We build bridges between families, volunteers, and local businesses. Every event and program is designed to strengthen the bonds that hold Winston-Salem together.</p>
+        </article>
+        <article class="values-item">
+          <h3>Integrity in every detail</h3>
+          <p>We operate with transparency and accountability. Our review process ensures every program and partnership aligns with the best interests of local young people.</p>
+        </article>
+        <article class="values-item">
+          <h3>Growing together</h3>
+          <p>We believe in progress, not perfection. As an organization, we are constantly learning, adapting, and expanding to meet the evolving needs of our community.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="our-story">
+    <div class="our-story__inner">
+      <div class="our-story__visual">
+        <div class="our-story__art">
+          <div class="our-story__art-disc"></div>
+          <div class="our-story__art-ring"></div>
+          <div class="our-story__art-mark"><span>FC</span></div>
+        </div>
+      </div>
+      <div class="our-story__text">
+        <p class="section-kicker">Our Story</p>
+        <h2 id="story-heading">Rooted in Winston-Salem, growing with the community.</h2>
+        <p>
+          The Family Center started with a simple belief: that a community is strongest when
+          its young people are seen, supported, and celebrated. From the first neighborhood
+          block party to today's expanding programs, every step has been guided by that
+          belief and by the people who show up to make it real.
+        </p>
+        <p>
+          What began as volunteer-led gatherings has grown into a network of events,
+          partnerships, and support systems that reach across Forsyth County. We are
+          proof that small acts of community can add up to something lasting.
+        </p>
+        <a class="button button--outline" href="/contact">Get to know us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="donation-section">
+    <div class="donation-section__copy">
+      <h2>Give directly</h2>
+      <p>
+        Your support helps The Family Center bring people together and meet practical
+        needs for local young people across Winston-Salem. Every contribution makes a
+        lasting difference.
+      </p>
+    </div>
+    <a class="button button--gold" href="/contact">Make a donation</a>
+  </section>
+{% endblock %}

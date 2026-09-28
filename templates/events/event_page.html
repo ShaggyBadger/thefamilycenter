@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  <article class="event-page">
+    <header class="event-page__heading">
+      <p class="event-list__date"><time datetime="{{ page.start_datetime|date:'c' }}">{{ page.start_datetime|date:'D, M j · g:i A T' }}</time></p>
+      <h1>{{ page.title }}</h1>
+      {% if page.summary %}<p class="event-page__summary">{{ page.summary }}</p>{% endif %}
+    </header>
+    {% if page.image %}<figure class="event-page__image">{% image page.image width-1200 %}</figure>{% endif %}
+
+    <dl class="event-details">
+      {% if page.venue_name %}<div><dt>Where</dt><dd>{{ page.venue_name }}{% if page.address %}<br>{{ page.address|linebreaksbr }}{% endif %}</dd></div>{% endif %}
+      {% if page.map_url %}<div><dt>Directions</dt><dd><a class="map-link" href="{{ page.map_url }}" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>{{ page.venue_name|default:"Open in maps" }}</a></dd></div>{% elif page.address %}<div><dt>Directions</dt><dd><a class="map-link" href="https://www.google.com/maps?q={{ page.address|urlencode }}" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Get directions</a></dd></div>{% endif %}
+      {% if page.end_datetime %}<div><dt>Ends</dt><dd><time datetime="{{ page.end_datetime|date:'c' }}">{{ page.end_datetime|date:'D, M j · g:i A T' }}</time></dd></div>{% endif %}
+      {% if page.cost %}<div><dt>Cost</dt><dd>{{ page.cost }}</dd></div>{% endif %}
+      {% if page.eligibility %}<div><dt>Who can attend</dt><dd>{{ page.eligibility }}</dd></div>{% endif %}
+    </dl>
+
+    {% if page.schedule %}<section class="event-page__section rich-text"><h2>Schedule</h2>{{ page.schedule|richtext }}</section>{% endif %}
+    {% if page.details %}<section class="event-page__section rich-text"><h2>Event details</h2>{{ page.details|richtext }}</section>{% endif %}
+    {% if page.food %}<section class="event-page__section rich-text"><h2>Food</h2>{{ page.food|richtext }}</section>{% endif %}
+    {% if page.what_to_bring %}<section class="event-page__section rich-text"><h2>What to bring</h2>{{ page.what_to_bring|richtext }}</section>{% endif %}
+    {% if page.accessibility %}<section class="event-page__section rich-text"><h2>Accessibility</h2>{{ page.accessibility|richtext }}</section>{% endif %}
+    {% if page.transportation %}<section class="event-page__section rich-text"><h2>Getting there</h2>{{ page.transportation|richtext }}</section>{% endif %}
+    {% if page.parking %}<section class="event-page__section rich-text"><h2>Parking</h2>{{ page.parking|richtext }}</section>{% endif %}
+    {% if page.call_to_action_url and page.call_to_action_label %}
+      <p><a class="action-link" href="{{ page.call_to_action_url }}">{{ page.call_to_action_label }}</a></p>
+    {% endif %}
+  </article>
+{% endblock %}

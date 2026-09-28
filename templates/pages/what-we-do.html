@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section class="about-band">
+    <div class="about-band__inner">
+      <div class="about-band__text">
+        <p class="section-kicker">What We Do</p>
+        <h2>Bringing Winston-Salem families together, today and tomorrow.</h2>
+        <p class="about-band__copy">
+          The Family Center connects young people with the community events, practical support, and
+          long-term opportunities they need to thrive right here in North Carolina.
+        </p>
+      </div>
+      <div class="about-band__image">
+        <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Volunteers setting up for a community event in Winston-Salem, North Carolina." loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="pillar-band" aria-labelledby="events-heading">
+    <div class="pillar-grid">
+      <article class="pillar-item">
+        <p class="section-kicker">Bring people together</p>
+        <h2 id="events-heading">Community events</h2>
+        <p>
+          From neighborhood block parties to seasonal fundraisers, our events give Winston-Salem
+          families, neighbors, volunteers, and local businesses a chance to connect. Every gathering
+          is designed to strengthen the bonds that make our community resilient.
+        </p>
+        <a class="link" href="/events">See upcoming events →</a>
+      </article>
+      <article class="pillar-item">
+        <p class="section-kicker">Meet practical needs</p>
+        <h2>Support for students</h2>
+        <p>
+          Backpack drives, school-supply kits, and holiday assistance programs help local students
+          start the school year with confidence. The Family Center works directly with families
+          across Forsyth County to make sure no child goes without the basics.
+        </p>
+        <a class="link" href="/contact">Get involved →</a>
+      </article>
+      <article class="pillar-item">
+        <p class="section-kicker">Build for the future</p>
+        <h2>More consistent opportunities</h2>
+        <p>
+          Beyond events and supplies, The Family Center is growing toward ongoing programs that
+          give young people year-round support — mentorship, tutoring, and pathways to
+          higher education and careers in the Piedmont Triad region.
+        </p>
+        <a class="link" href="/business-partnerships">Partner with us →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="home-events" id="upcoming-events" aria-labelledby="events-section-title">
+    <div class="home-events__inner">
+      <header class="home-events__heading">
+        <div>
+          <p class="section-kicker">Our Work in Action</p>
+          <h2 id="events-section-title">Recent community moments</h2>
+          <p>Photos and highlights from events and programs that made a difference this season.</p>
+        </div>
+      </header>
+
+      <div class="home-event-grid">
+        <article class="home-event-row">
+          <div class="home-event-row__image">
+            <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Families enjoying a community block party in downtown Winston-Salem." loading="lazy" width="400" height="250">
+          </div>
+          <div class="home-event-row__body">
+            <h3>Summer Block Party</h3>
+            <p>Over 200 families joined us for games, food, and live music across the neighborhood.</p>
+            <p class="home-event-row__date">July 2025</p>
+          </div>
+        </article>
+
+        <article class="home-event-row">
+          <div class="home-event-row__image">
+            <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Students receiving backpacks and school supplies at a community distribution event." loading="lazy" width="400" height="250">
+          </div>
+          <div class="home-event-row__body">
+            <h3>Back-to-School Supply Drive</h3>
+            <p>500+ students received backpacks, notebooks, and essential school supplies this August.</p>
+            <p class="home-event-row__date">August 2025</p>
+          </div>
+        </article>
+
+        <article class="home-event-row">
+          <div class="home-event-row__image">
+            <img src="/media/legacy-site/data/gallery/gallery1/img/resized-20240810-140701..jpg" alt="Community members volunteering at a local garden project in Winston-Salem." loading="lazy" width="400" height="250">
+          </div>
+          <div class="home-event-row__body">
+            <h3>Community Garden Launch</h3>
+            <p>Volunteers transformed an empty lot into a thriving garden serving local families.</p>
+            <p class="home-event-row__date">September 2025</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="donation-section">
+    <div class="donation-section__copy">
+      <h2>Give directly</h2>
+      <p>
+        Your support can help The Family Center bring people together and meet practical needs
+        for local young people across Winston-Salem and Forsyth County. Every contribution matters.
+      </p>
+    </div>
+    <a class="button button--gold" href="/contact">Make a donation</a>
+  </section>
+{% endblock %}

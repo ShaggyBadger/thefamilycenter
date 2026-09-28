@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__inner">
+      <div class="home-hero__copy">
+        <p class="home-hero__location">Winston-Salem, North Carolina</p>
+        <h1 id="home-title">{{ page.hero_heading|default:"A community that shows up for its young people." }}</h1>
+        <p class="home-hero__intro">
+          {{ page.hero_body|default:"The Family Center brings people together through community events and practical support—and is building toward more ways to support students as they grow." }}
+        </p>
+        <div class="home-hero__actions">
+          <a class="home-button" href="#upcoming-events">See upcoming events</a>
+          {% if events_index_page %}
+            <a class="home-hero__text-link" href="{{ events_index_page.url }}">Browse all events</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="home-hero__visual">
+        {% if page.hero_image %}
+          <div class="hero-photo-shell">
+            {% image page.hero_image width-800 as hero_img %}
+            <img class="hero-photo" src="{{ hero_img.url }}" alt="{% if page.hero_image_caption %}{{ page.hero_image_caption }}{% else %}Community gathering{% endif %}" fetchpriority="high">
+            {% if page.hero_image_caption %}
+              <p class="photo-caption">{{ page.hero_image_caption }}</p>
+            {% endif %}
+          </div>
+        {% elif featured_event %}
+          <article class="home-event-poster" aria-labelledby="featured-event-title">
+            <p class="home-event-poster__label">Next up</p>
+            <div class="home-event-poster__body">
+              <time class="home-event-poster__date" datetime="{{ featured_event.start_datetime|date:'c' }}">
+                <span>{{ featured_event.start_datetime|date:"M" }}</span>
+                <strong>{{ featured_event.start_datetime|date:"j" }}</strong>
+                <span>{{ featured_event.start_datetime|date:"Y" }}</span>
+              </time>
+                <div class="home-event-poster__details">
+                <p class="home-event-poster__time">
+                  <time datetime="{{ featured_event.start_datetime|date:'c' }}">{{ featured_event.start_datetime|date:'l, F j · g:i A T' }}</time>
+                </p>
+                <h2 id="featured-event-title">{{ featured_event.title }}</h2>
+                {% if featured_event.summary %}<p class="home-event-poster__summary">{{ featured_event.summary }}</p>{% endif %}
+                {% if featured_event.venue_name %}<p class="home-event-poster__venue">{{ featured_event.venue_name }}</p>{% endif %}
+                <a class="home-event-poster__link" href="{{ featured_event.url }}">View event details</a>
+              </div>
+            </div>
+          </article>
+        {% else %}
+          <div class="home-hero-art" aria-hidden="true">
+            <div class="home-hero-art__disc"></div>
+            <div class="home-hero-art__ring"></div>
+            <div class="home-hero-art__mark"><span>FC</span></div>
+            <p class="home-hero-art__caption">Make a day of it.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if page.community_pillar_title or page.practical_support_pillar_title or page.future_direction_pillar_title %}
+    <section class="pillar-band" aria-labelledby="pillars-heading">
+      <div class="pillar-grid">
+        {% if page.community_pillar_title %}
+          <article class="pillar-item">
+            <p class="section-kicker">Bring people together</p>
+            <h2 id="pillars-heading">{{ page.community_pillar_title }}</h2>
+            <p>{{ page.community_pillar_body|default:"Gatherings and fundraisers create ways for families, neighbors, volunteers, and businesses to connect." }}</p>
+          </article>
+        {% endif %}
+        {% if page.practical_support_pillar_title %}
+          <article class="pillar-item">
+            <p class="section-kicker">Meet practical needs</p>
+            <h2>{{ page.practical_support_pillar_title }}</h2>
+            <p>{{ page.practical_support_pillar_body|default:"Backpack and school-supply efforts are one way The Family Center supports local young people and families." }}</p>
+          </article>
+        {% endif %}
+        {% if page.future_direction_pillar_title %}
+          <article class="pillar-item">
+            <p class="section-kicker">Build for the future</p>
+            <h2>{{ page.future_direction_pillar_title }}</h2>
+            <p>{{ page.future_direction_pillar_body|default:"The organization is exploring ways to grow toward more ongoing support for students as they develop." }}</p>
+          </article>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="home-events" id="upcoming-events" aria-labelledby="upcoming-events-title">
+    <div class="home-events__inner">
+      <header class="home-events__heading">
+        <div>
+          <h2 id="upcoming-events-title">Upcoming events</h2>
+          <p>Dates, places, and ways to take part—all in one place.</p>
+        </div>
+        {% if events_index_page %}
+          <a class="home-events__all-link" href="{{ events_index_page.url }}">All events</a>
+        {% endif %}
+      </header>
+
+      {% if upcoming_events %}
+        <ul class="home-event-list">
+          {% for event in upcoming_events %}
+            <li class="home-event-row">
+              <time class="home-event-row__date" datetime="{{ event.start_datetime|date:'c' }}">
+                <span>{{ event.start_datetime|date:"M" }}</span>
+                <strong>{{ event.start_datetime|date:"j" }}</strong>
+              </time>
+              <div class="home-event-row__content">
+                <p class="home-event-row__time"><time datetime="{{ event.start_datetime|date:'c' }}">{{ event.start_datetime|date:'l, F j · g:i A T' }}</time></p>
+                <h3><a href="{{ event.url }}">{{ event.title }}</a></h3>
+                {% if event.summary %}<p class="home-event-row__summary">{{ event.summary }}</p>{% endif %}
+                {% if event.venue_name %}<p class="home-event-row__venue">{{ event.venue_name }}</p>{% endif %}
+              </div>
+              <a class="home-event-row__link" href="{{ event.url }}" aria-label="View details for {{ event.title }}">Details</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% elif not featured_event %}
+        <p class="home-events__empty">No upcoming events are listed right now. Check back for new dates and details.</p>
+      {% else %}
+        <p class="home-events__empty">More events will appear here as they are added.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if about_page or what_we_do_page or business_partnerships_page %}
+    <section class="home-more" aria-labelledby="home-more-title">
+      <div class="home-more__inner">
+        <h2 id="home-more-title">Learn about The Family Center</h2>
+        <nav class="home-more__links" aria-label="More about The Family Center">
+          {% if what_we_do_page %}<a href="{{ what_we_do_page.url }}">{{ what_we_do_page.title }}</a>{% endif %}
+          {% if about_page %}<a href="{{ about_page.url }}">{{ about_page.title }}</a>{% endif %}
+          {% if business_partnerships_page %}<a href="{{ business_partnerships_page.url }}">{{ business_partnerships_page.title }}</a>{% endif %}
+        </nav>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}
