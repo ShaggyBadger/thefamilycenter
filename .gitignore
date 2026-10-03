@@ -17,3 +17,4 @@ AGENTS.md
 .graphifyignore
 graphify-out/
 .impeccable/
+*.dump
