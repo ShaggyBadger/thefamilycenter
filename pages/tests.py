@@ -23,6 +23,8 @@ class WagtailPublicPageTests(TestCase):
         self.assertContains(response, "The Family Center")
         self.assertContains(response, "No upcoming events are listed right now.")
         self.assertContains(response, "Helping students enter high school ready to thrive.")
+        self.assertContains(response, "Building strong foundations")
+        self.assertContains(response, "Growing skills and confidence")
         self.assertContains(response, "Student Readiness in Winston-Salem")
         self.assertContains(response, "The Family Center’s purpose is to prepare")
         self.assertContains(response, "Local preview · Event details are for review")
