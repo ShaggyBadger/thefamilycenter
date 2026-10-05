@@ -40,3 +40,19 @@ class EventPublicationGuardTests(TestCase):
             response = require_reviewed_page_content(request, event)
 
         self.assertEqual(response.status_code, 302)
+
+    @override_settings(DEBUG=False)
+    def test_confirmed_event_can_be_published_without_a_call_to_action(self):
+        events_index = EventsIndexPage.objects.get(slug="events")
+        event = EventPage(
+            title="Confirmed event without a CTA",
+            slug="confirmed-event-without-cta",
+            start_datetime=datetime(2026, 11, 21, 11, tzinfo=timezone.utc),
+            verification_status=EventPage.VERIFIED,
+        )
+        events_index.add_child(instance=event)
+        request = RequestFactory().post("/admin/pages/4/", {})
+
+        response = require_reviewed_page_content(request, event)
+
+        self.assertIsNone(response)

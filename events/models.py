@@ -25,9 +25,6 @@ class EventsIndexPage(Page):
         events = EventPage.objects.live().descendant_of(self)
         if not settings.DEBUG:
             events = events.filter(verification_status=EventPage.VERIFIED)
-            events = events.exclude(call_to_action_label="").exclude(
-                call_to_action_url=""
-            )
         context["upcoming_events"] = events.filter(
             Q(end_datetime__gte=now)
             | Q(end_datetime__isnull=True, start_datetime__gte=now)
@@ -123,11 +120,3 @@ class EventPage(Page):
             raise ValidationError(
                 {"end_datetime": "The end date and time must be after the start."}
             )
-
-    @property
-    def is_public_ready(self):
-        return bool(
-            self.verification_status == self.VERIFIED
-            and self.call_to_action_label.strip()
-            and self.call_to_action_url.strip()
-        )

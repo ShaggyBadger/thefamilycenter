@@ -17,10 +17,10 @@ def require_reviewed_page_content(request, page):
         messages.error(request, "Owner/CEO approval is required before publishing this page.")
         return redirect("wagtailadmin_pages:edit", page.pk)
 
-    if isinstance(page, EventPage) and not page.is_public_ready:
+    if isinstance(page, EventPage) and page.verification_status != EventPage.VERIFIED:
         messages.error(
             request,
-            "Confirm the event details and a working action before publishing.",
+            "Confirm the event details before publishing.",
         )
         return redirect("wagtailadmin_pages:edit", page.pk)
 

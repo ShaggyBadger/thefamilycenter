@@ -114,7 +114,7 @@ class WagtailPublicPageTests(TestCase):
         self.assertContains(response, "Local preview · details need confirmation")
 
     @override_settings(DEBUG=False)
-    def test_homepage_only_shows_public_ready_events_outside_local_preview(self):
+    def test_confirmed_events_without_ctas_are_public_outside_local_preview(self):
         events_index = EventsIndexPage.objects.get(slug="events")
         events = [
             EventPage(
@@ -136,11 +136,17 @@ class WagtailPublicPageTests(TestCase):
             event.save_revision().publish()
 
         response = self.client.get("/")
+        index_response = self.client.get("/events/")
 
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "Unconfirmed Gathering")
-        self.assertNotContains(response, "Missing Event Action")
-        self.assertContains(response, "No upcoming events are listed right now.")
+        self.assertContains(response, "Missing Event Action")
+        self.assertEqual(
+            response.context["featured_event"].title, "Missing Event Action"
+        )
+        self.assertEqual(index_response.status_code, 200)
+        self.assertNotContains(index_response, "Unconfirmed Gathering")
+        self.assertContains(index_response, "Missing Event Action")
 
     def test_events_index_has_an_accurate_empty_state(self):
         response = self.client.get("/events/")

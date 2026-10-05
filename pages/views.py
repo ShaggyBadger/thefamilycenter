@@ -81,11 +81,7 @@ def home(request):
         if events_index_page:
             events = EventPage.objects.live().descendant_of(events_index_page)
             if not settings.DEBUG:
-                events = events.filter(
-                    verification_status=EventPage.VERIFIED,
-                    call_to_action_label__gt="",
-                    call_to_action_url__gt="",
-                )
+                events = events.filter(verification_status=EventPage.VERIFIED)
             upcoming_events = events.filter(
                 start_datetime__gte=timezone.localtime()
             ).order_by("start_datetime")
